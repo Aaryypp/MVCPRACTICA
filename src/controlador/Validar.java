@@ -111,6 +111,30 @@ public class Validar {
         }
 
     }
+     public static void letras_espaciosTEXTAREA(JTextArea texto, int longitud) {
+        try {
+            texto.addKeyListener(new KeyAdapter() {
+                @Override
+
+                public void keyTyped(KeyEvent e) {
+                    int key = e.getKeyChar();
+                    boolean mayusculas = key >= 65 && key <= 90;
+                    boolean minusculas = key >= 97 && key <= 122;
+                    boolean espacio = key == 32;
+
+                    if (!(minusculas || mayusculas || espacio)) {
+                        e.consume();
+                    }
+                    if (texto.getText().length() >= longitud) {
+                        e.consume();
+                    }
+                }
+            });
+
+        } catch (Exception d) {
+        }
+
+    }
 
     public static boolean correo(JTextField email) {
         String emailPattern = "^[_a-z0-9-]+(\\.[_a-z0-9-]+)*@"

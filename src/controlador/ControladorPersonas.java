@@ -16,6 +16,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 import modelo.ModeloPersona;
+import modelo.ModeloProducto;
 import modelo.Persona;
 import vista.VistaPersona;
 
@@ -25,11 +26,11 @@ public class ControladorPersonas {
     private ModeloPersona modelo;
     private VistaPersona vista;
     private Persona metodos;
+    private ModeloProducto listarp;
     Connection con;
     String[] datospersona = {"Cedula", "Nombre", "Apellido", "Fecha nacimiento", "Telefono", " Sexo", "Sueldo", "Cupo","Correo"};
     List<Persona> personas = new ArrayList<Persona>();
-    DefaultTableModel tabla = null;
-  
+    DefaultTableModel tabla = null; 
     public  String modform;
     String idselect;
     
@@ -40,14 +41,12 @@ public class ControladorPersonas {
         this.modelo = modelo;
         this.vista = vista;
         vista.setVisible(true);
-        vista.setLocationRelativeTo(null);
+//        vista.setLocationRelativeTo(null);
         mostrarpersonas();
         mostrartabla();
         seleccionar();
-        validar();
-        
-    }
-    
+        validar();       
+    }  
     public void iniciarControlador() {
         vista.getBtnConsultar().addActionListener(C -> buscarperso());
         vista.getMOSTRART().addActionListener(C -> mostrartabla());
@@ -65,12 +64,9 @@ public class ControladorPersonas {
                 }else{
                    JOptionPane.showMessageDialog(null, "REGISTRO INCORRECTO"); 
                 }
- 
-            } else {
-                
+            } else {                
                 modificar();
                 JOptionPane.showMessageDialog(null, "MODIFICADO CORRECTAMENTE"); 
-
             }
             ; 
         });
@@ -127,11 +123,6 @@ public class ControladorPersonas {
         });
 
     }
-     
-     
-     
-     
-     
     private void buscarperso() {
         if (vista.getTxtBuscar().getText().equals("")) {
          
@@ -144,26 +135,30 @@ public class ControladorPersonas {
         personas = modelo.listarPersonas(idpet);
         System.out.println(personas.toString());
         personas.stream().forEach(tipos -> {
-        Object[] filaNueva = {tipos.getIdPersona(), tipos.getNombrePersona(), tipos.getApellidoPersona(),String.valueOf(tipos.getEdad(tipos.getFechanacimineto())), tipos.getTelefono(), tipos.getSexo(), String.valueOf(tipos.getSueldo()), tipos.getCupo(), tipos.getCorreo()};
+        Object[] filaNueva = {tipos.getIdPersona(), tipos.getNombrePersona()
+        , tipos.getApellidoPersona() 
+        ,String.valueOf(tipos.getEdad(tipos.getFechanacimineto())),
+        tipos.getTelefono(), tipos.getSexo(), 
+        String.valueOf(tipos.getSueldo()), tipos.getCupo(), tipos.getCorreo()};
         tabla.addRow(filaNueva);
         });
         vista.getT_personas().setModel(tabla); 
         }
     }
-
-   
-     public void mostrarpersonas() {    
+    public void mostrarpersonas() {    
      tabla=new DefaultTableModel(null, datospersona); 
      vista.getT_personas().setModel(tabla);
-      
-   
     }
     public void mostrartabla() {
         DefaultTableModel model = (DefaultTableModel) vista.getT_personas().getModel();
         model.setRowCount(0);
         personas = modelo.listarPersonas("");
         personas.stream().forEach(tipos -> {
-            Object[] filaNueva = {tipos.getIdPersona(), tipos.getNombrePersona(), tipos.getApellidoPersona(),String.valueOf(tipos.getEdad(tipos.getFechanacimineto())), tipos.getTelefono(), tipos.getSexo(), String.valueOf(tipos.getSueldo()), tipos.getCupo(),tipos.getCorreo()};
+            Object[] filaNueva = {tipos.getIdPersona(), tipos.getNombrePersona(),
+                tipos.getApellidoPersona(), 
+                String.valueOf(tipos.getEdad(tipos.getFechanacimineto())),
+                 tipos.getTelefono(), tipos.getSexo(), String.valueOf(tipos.getSueldo()),
+                tipos.getCupo(), tipos.getCorreo()};
             tabla.addRow(filaNueva);
         });
         vista.getT_personas().setModel(tabla);
@@ -171,10 +166,14 @@ public class ControladorPersonas {
     
     private void confirmareliminacion() {
 
-        if (JOptionPane.showConfirmDialog(null, "¿Está seguro de que desea eliminar el registro seleccionado?", "Eliminar registro", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE) == JOptionPane.YES_OPTION) {
+        if (JOptionPane.showConfirmDialog(null, 
+                "¿Está seguro de que desea eliminar el registro seleccionado?",
+                "Eliminar registro", JOptionPane.YES_NO_OPTION, 
+                JOptionPane.WARNING_MESSAGE) == JOptionPane.YES_OPTION) {
             System.out.println("si");
             try {
-                idselect = vista.getT_personas().getValueAt(vista.getT_personas().getSelectedRow(), 0).toString();
+                idselect = vista.getT_personas().getValueAt(vista.getT_personas().getSelectedRow()
+                        , 0).toString();
                 modelo.eliminarperso(idselect);
                 mostrartabla();
                 JOptionPane.showMessageDialog(null, "ELIMINADO CORRECTAMENTE");
@@ -184,42 +183,40 @@ public class ControladorPersonas {
             }
 
         } else {
-            System.out.println("no");
+            
         }
 
     }
-     private void ingresar() { 
-         if (vista.getTxtnombresform().getText().isEmpty()||vista.getTxtapellidosform().getText().isEmpty()||vista.getTxtcedulaform().getText().isEmpty()||vista.getTxttelefonoform().getText().isEmpty()
-                ||vista.getTxtcorreoform().getText().isEmpty()||vista.getTxtsexoform().getText().isEmpty()||vista.getTxtcupoform().getText().isEmpty()||vista.getTxtsueldoform().getText().isEmpty() ) {
-             JOptionPane.showMessageDialog(null, "Rellene todo");
-         }else{
-             try {
-         modelo.setNombrePersona(vista.getTxtnombresform().getText());
-         modelo.setApellidoPersona(vista.getTxtapellidosform().getText());
-         modelo.setIdPersona(vista.getTxtcedulaform().getText());
-        ////////////////
-        Date xfec = vista.getTxtdatenaciform().getDate();
-        Long d = xfec.getTime();
-        java.sql.Date nac = new java.sql.Date(d);
-        modelo.setFechanacimineto(nac);
-                 System.out.println(nac.toString());
-        ////////////////////////
-//         modelo.setFechanacimineto(vista.getTxtdatenaci().getDate());
-         modelo.setTelefono(vista.getTxttelefonoform().getText());
-         modelo.setCorreo(vista.getTxtcorreoform().getText());
-         modelo.setSexo(vista.getTxtsexoform().getText());
-         modelo.setCupo(vista.getTxtcupoform().getText());
-         modelo.setSueldo( Double.parseDouble(vista.getTxtsueldoform().getText()));     
-         
-        
-         
-             } catch (Exception e) {
-                  JOptionPane.showMessageDialog(null, "INGRESE LOS DATOS CORRECTOS");
-             } 
-             
-            
-         }
-         
+    private void ingresar() {
+        if (vista.getTxtnombresform().getText().isEmpty() 
+                || vista.getTxtapellidosform().getText().isEmpty() 
+                || vista.getTxtcedulaform().getText().isEmpty() 
+                || vista.getTxttelefonoform().getText().isEmpty()
+                || vista.getTxtcorreoform().getText().isEmpty() 
+                || vista.getTxtsexoform().getText().isEmpty() 
+                || vista.getTxtcupoform().getText().isEmpty() 
+                || vista.getTxtsueldoform().getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Rellene todo");
+        } else {
+            try {
+                modelo.setNombrePersona(vista.getTxtnombresform().getText());
+                modelo.setApellidoPersona(vista.getTxtapellidosform().getText());
+                modelo.setIdPersona(vista.getTxtcedulaform().getText());
+                Date xfec = vista.getTxtdatenaciform().getDate();
+                Long d = xfec.getTime();
+                java.sql.Date nac = new java.sql.Date(d);
+                modelo.setFechanacimineto(nac);
+                modelo.setTelefono(vista.getTxttelefonoform().getText());
+                modelo.setCorreo(vista.getTxtcorreoform().getText());
+                modelo.setSexo(vista.getTxtsexoform().getText());
+                modelo.setCupo(vista.getTxtcupoform().getText());
+                modelo.setSueldo(Double.parseDouble(vista.getTxtsueldoform().getText()));
+
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, "INGRESE LOS DATOS CORRECTOS");
+            }
+
+        }
 
     }
      public void abrirform( String mod){
@@ -231,13 +228,10 @@ public class ControladorPersonas {
          }else{
               vista.getTxtcedulaform().setEditable(false);
               llenarPerfil();
-              
-         }
-         
+         }       
      }
      public void salirform(){
-         vista.getFormularioP().setVisible(false);
-          
+         vista.getFormularioP().setVisible(false);     
      }
      public void llenarPerfil(){
         personas = modelo.listarPersonas(idselect);
@@ -259,8 +253,7 @@ public class ControladorPersonas {
             @Override
             public void mousePressed(MouseEvent me) {
                 if (me.getClickCount() == 1) {
-                    idselect = vista.getT_personas().getValueAt(vista.getT_personas().getSelectedRow(), 0).toString();
-                     
+                    idselect = vista.getT_personas().getValueAt(vista.getT_personas().getSelectedRow(), 0).toString();   
                 }
             }
         });

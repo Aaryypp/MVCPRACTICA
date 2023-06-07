@@ -27,7 +27,8 @@ public class Persona {
     public Persona() {
     }
 
-    public Persona(String idPersona, String nombrePersona, String apellidoPersona, Date fechanacimineto, String telefono, String sexo, double sueldo, String cupo, String foto, String correo) {
+    public Persona(String idPersona, String nombrePersona, String apellidoPersona, Date fechanacimineto, 
+            String telefono, String sexo, double sueldo, String cupo, String foto, String correo) {
         this.idPersona = idPersona;
         this.nombrePersona = nombrePersona;
         this.apellidoPersona = apellidoPersona;
@@ -130,11 +131,7 @@ public class Persona {
         return (int) ChronoUnit.YEARS.between(date, LocalDateTime.now());
     }
   
-    
-//     Date cumple = calendario2.getDate();
-//     LocalDate nac=cumple.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-//     LocalDate hoy=LocalDate.now();
-//     int edad=Period.between(nac, hoy).getYears();
+ 
 
     
     

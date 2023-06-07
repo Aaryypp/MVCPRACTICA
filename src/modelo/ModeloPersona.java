@@ -15,7 +15,6 @@ public class ModeloPersona extends Persona {
 
     public ModeloPersona() {
     }
-
     public List<Persona> listarPersonas( String idper) {
         List<Persona> listaPersonas = new ArrayList<Persona>();
         if (idper.equals("")) {
@@ -45,7 +44,7 @@ public class ModeloPersona extends Persona {
                     persona.toString();                    
                 }
             }
-
+            
             return listaPersonas;
         } catch (SQLException ex) {
             Logger.getLogger(ModeloPersona.class.getName()).log(Level.SEVERE, null, ex);
@@ -53,10 +52,7 @@ public class ModeloPersona extends Persona {
             return null;
         }
     }
-    
-      
-        
-     public boolean eliminarperso(String ideliminar){
+    public boolean eliminarperso(String ideliminar){
          boolean eliminado=true;
          try {
               sql="DELETE FROM `persona` WHERE idpersona ="+ideliminar; 
@@ -75,8 +71,6 @@ public class ModeloPersona extends Persona {
                  + "'" + getSexo() + "','" + getSueldo() + "','" + getCupo() + "','','" + getCorreo() + "')";       
         return cpg.accionBD(sql);
     }
-    
-    
      public boolean updatePersona() {
         sql = "UPDATE persona SET nombres='"
                 +getNombrePersona()+"', apellidos='"

@@ -6,11 +6,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import com.mysql.jdbc.PreparedStatement;
-
-/**
- *
- * @author davic
- */
+ 
 public class ConexionPG {
 
     public static String usuario = "root";
@@ -48,15 +44,10 @@ public class ConexionPG {
         }
         return con;
     }
-    
-    
-    
 
     public ConexionPG() {
     }
-    
-    
-    
+
     public ResultSet consultaBD(String sql) {
         con = conectar();
         try {
@@ -70,11 +61,12 @@ public class ConexionPG {
         }
 
     }
-
     public boolean accionBD(String sql) {
         con = conectar();
         try {
             ps = (PreparedStatement) con.prepareStatement(sql);
+            System.out.println("aqui sql");
+            System.out.println(sql);
            
             if ( ps.executeUpdate(sql)==1) {
                 ps.close();

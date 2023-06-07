@@ -1,9 +1,11 @@
 package mvc;
 
+import controlador.ControladorMenuPrinc;
 import controlador.ControladorPersonas;
 import java.sql.Connection;
 import modelo.ConexionPG;
 import modelo.ModeloPersona;
+import vista.VistaMenuPrincipal;
 
 import vista.VistaPersona;
 
@@ -11,11 +13,10 @@ public class MVC {
 
     
     public static void main(String[] args) {
-        ModeloPersona modelo = new ModeloPersona();
-        VistaPersona vista = new VistaPersona();
- 
-        ControladorPersonas controlador = new ControladorPersonas(modelo, vista);
-        controlador.iniciarControlador(); 
+         VistaMenuPrincipal  vistamenuPrincipal=new VistaMenuPrincipal();
+         ControladorMenuPrinc ControladorPrin= new ControladorMenuPrinc(vistamenuPrincipal);
+         ControladorPrin.iniciaControl();
+         
         
         
         

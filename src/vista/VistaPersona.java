@@ -9,7 +9,7 @@ import javax.swing.JPanel;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 
-public class VistaPersona extends javax.swing.JFrame {
+public class VistaPersona extends javax.swing.JInternalFrame {
 
     public VistaPersona() {
         initComponents();
@@ -19,161 +19,78 @@ public class VistaPersona extends javax.swing.JFrame {
         return btnConsultar;
     }
 
-    public void setBtnConsultar(JButton btnConsultar) {
-        this.btnConsultar = btnConsultar;
-    }
-
     public JButton getBtnCrear() {
         return btnCrear;
-    }
-
-    public void setBtnCrear(JButton btnCrear) {
-        this.btnCrear = btnCrear;
     }
 
     public JButton getBtnEditar() {
         return btnEditar;
     }
 
-    public void setBtnEditar(JButton btnEditar) {
-        this.btnEditar = btnEditar;
-    }
 
     public JButton getBtnImprimir() {
         return btnImprimir;
-    }
-
-    public void setBtnImprimir(JButton btnImprimir) {
-        this.btnImprimir = btnImprimir;
     }
 
     public JButton getBtnRemover() {
         return btEliminar;
     }
 
-    public void setBtnRemover(JButton btnRemover) {
-        this.btEliminar = btnRemover;
-    }
-
     public JTable getT_personas() {
         return t_personas;
     }
 
-    public void setT_personas(JTable t_personas) {
-        this.t_personas = t_personas;
-    }
-
-    
     public JLabel getLblPersonas() {
         return lblPersonas;
-    }
-
-    public void setLblPersonas(JLabel lblPersonas) {
-        this.lblPersonas = lblPersonas;
     }
 
     public JTextField getTxtBuscar() {
         return txtBuscar;
     }
 
-    public void setTxtBuscar(JTextField txtBuscar) {
-        this.txtBuscar = txtBuscar;
-    }
-
     public JButton getMOSTRART() {
         return MOSTRART;
-    }
-
-    public void setMOSTRART(JButton MOSTRART) {
-        this.MOSTRART = MOSTRART;
     }
 
     public JTextField getTxtapellidos() {
         return txtapellidos;
     }
 
-    public void setTxtapellidos(JTextField txtapellidos) {
-        this.txtapellidos = txtapellidos;
-    }
-
     public JTextField getTxtcedula() {
         return txtcedula;
-    }
-
-    public void setTxtcedula(JTextField txtcedula) {
-        this.txtcedula = txtcedula;
     }
 
     public JTextField getTxtcupo() {
         return txtcupo;
     }
 
-    public void setTxtcupo(JTextField txtcupo) {
-        this.txtcupo = txtcupo;
-    }
-
     public JDateChooser getTxtdatenaci() {
         return txtdatenaci;
-    }
-
-    public void setTxtdatenaci(JDateChooser txtdatenaci) {
-        this.txtdatenaci = txtdatenaci;
     }
 
     public JTextField getTxtnombres() {
         return txtnombres;
     }
 
-    public void setTxtnombres(JTextField txtnombres) {
-        this.txtnombres = txtnombres;
-    }
 
     public JTextField getTxtsexo() {
         return txtsexo;
-    }
-
-    public void setTxtsexo(JTextField txtsexo) {
-        this.txtsexo = txtsexo;
     }
 
     public JTextField getTxttelefono() {
         return txttelefono;
     }
 
-    public void setTxttelefono(JTextField txttelefono) {
-        this.txttelefono = txttelefono;
-    }
-
     public JTextField getTxtcorreo() {
         return txtcorreo;
-    }
-
-    public void setTxtcorreo(JTextField txtcorreo) {
-        this.txtcorreo = txtcorreo;
     }
 
     public JTextField getTxtsueldo() {
         return txtsueldo;
     }
 
-    public void setTxtsueldo(JTextField txtsueldo) {
-        this.txtsueldo = txtsueldo;
-    }
-
-    public JButton getBotonregistrar() {
-        return botonregistrar;
-    }
-
-    public void setBotonregistrar(JButton botonregistrar) {
-        this.botonregistrar = botonregistrar;
-    }
-
     public JDialog getFormularioP() {
         return FormularioP;
-    }
-
-    public void setFormularioP(JDialog FormularioP) {
-        this.FormularioP = FormularioP;
     }
 
     public JPanel getPvacio() {
@@ -265,7 +182,6 @@ public class VistaPersona extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         t_personas = new javax.swing.JTable();
         pvacio = new javax.swing.JPanel();
-        botonregistrar = new javax.swing.JButton();
         txtnombres = new javax.swing.JTextField();
         txtapellidos = new javax.swing.JTextField();
         txtcedula = new javax.swing.JTextField();
@@ -454,54 +370,27 @@ public class VistaPersona extends javax.swing.JFrame {
             .addComponent(jPanel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setClosable(true);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setIconifiable(true);
+        setMaximizable(true);
+        setResizable(true);
 
         jPanel2.setBackground(new java.awt.Color(0, 102, 102));
 
         btnConsultar.setText("BUSCAR");
-        btnConsultar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnConsultarActionPerformed(evt);
-            }
-        });
 
         jLabel1.setText("Buscar:");
-
-        txtBuscar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtBuscarActionPerformed(evt);
-            }
-        });
 
         btnCrear.setText("CREAR");
 
         btEliminar.setText("REMOVER");
-        btEliminar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btEliminarActionPerformed(evt);
-            }
-        });
 
         btnEditar.setText("EDITAR");
-        btnEditar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnEditarActionPerformed(evt);
-            }
-        });
 
         btnImprimir.setText("IMPRIMIR");
-        btnImprimir.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnImprimirActionPerformed(evt);
-            }
-        });
 
         MOSTRART.setText("RECARGAR TABLA");
-        MOSTRART.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                MOSTRARTActionPerformed(evt);
-            }
-        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -549,7 +438,7 @@ public class VistaPersona extends javax.swing.JFrame {
 
         txtBuscar.getAccessibleContext().setAccessibleName("");
 
-        jPanel4.setBackground(new java.awt.Color(0, 0, 255));
+        jPanel4.setBackground(new java.awt.Color(0, 153, 255));
 
         lblPersonas.setBackground(new java.awt.Color(51, 51, 255));
         lblPersonas.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
@@ -589,60 +478,25 @@ public class VistaPersona extends javax.swing.JFrame {
 
         pvacio.setBackground(new java.awt.Color(0, 204, 204));
 
-        botonregistrar.setBackground(new java.awt.Color(0, 204, 51));
-        botonregistrar.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
-        botonregistrar.setForeground(new java.awt.Color(255, 255, 255));
-        botonregistrar.setText("REGISTRAR");
-        botonregistrar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botonregistrarActionPerformed(evt);
-            }
-        });
-
         txtnombres.setBackground(new java.awt.Color(51, 102, 255));
         txtnombres.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         txtnombres.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED), "Nombres:", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Times New Roman", 1, 14), new java.awt.Color(255, 255, 255))); // NOI18N
-        txtnombres.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtnombresActionPerformed(evt);
-            }
-        });
 
         txtapellidos.setBackground(new java.awt.Color(51, 102, 255));
         txtapellidos.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         txtapellidos.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED), "Apellidos:", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Times New Roman", 1, 14), new java.awt.Color(255, 255, 255))); // NOI18N
-        txtapellidos.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtapellidosActionPerformed(evt);
-            }
-        });
 
         txtcedula.setBackground(new java.awt.Color(51, 102, 255));
         txtcedula.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         txtcedula.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED), "Cedula:", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Times New Roman", 1, 14), new java.awt.Color(255, 255, 255))); // NOI18N
-        txtcedula.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtcedulaActionPerformed(evt);
-            }
-        });
 
         txttelefono.setBackground(new java.awt.Color(51, 102, 255));
         txttelefono.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         txttelefono.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED), "Telefono:", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Times New Roman", 1, 14), new java.awt.Color(255, 255, 255))); // NOI18N
-        txttelefono.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txttelefonoActionPerformed(evt);
-            }
-        });
 
         txtsexo.setBackground(new java.awt.Color(51, 102, 255));
         txtsexo.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         txtsexo.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED), "Sexo:", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Times New Roman", 1, 14), new java.awt.Color(255, 255, 255))); // NOI18N
-        txtsexo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtsexoActionPerformed(evt);
-            }
-        });
 
         txtdatenaci.setBackground(new java.awt.Color(51, 51, 255));
         txtdatenaci.setForeground(new java.awt.Color(51, 102, 255));
@@ -651,56 +505,36 @@ public class VistaPersona extends javax.swing.JFrame {
         txtcupo.setBackground(new java.awt.Color(51, 102, 255));
         txtcupo.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         txtcupo.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED), "Cupo:", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Times New Roman", 1, 14), new java.awt.Color(255, 255, 255))); // NOI18N
-        txtcupo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtcupoActionPerformed(evt);
-            }
-        });
 
         txtcorreo.setBackground(new java.awt.Color(51, 102, 255));
         txtcorreo.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         txtcorreo.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED), "Correo:", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Times New Roman", 1, 14), new java.awt.Color(255, 255, 255))); // NOI18N
-        txtcorreo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtcorreoActionPerformed(evt);
-            }
-        });
 
         txtsueldo.setBackground(new java.awt.Color(51, 102, 255));
         txtsueldo.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         txtsueldo.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED), "Sueldo:", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Times New Roman", 1, 14), new java.awt.Color(255, 255, 255))); // NOI18N
-        txtsueldo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtsueldoActionPerformed(evt);
-            }
-        });
 
         javax.swing.GroupLayout pvacioLayout = new javax.swing.GroupLayout(pvacio);
         pvacio.setLayout(pvacioLayout);
         pvacioLayout.setHorizontalGroup(
             pvacioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pvacioLayout.createSequentialGroup()
-                .addGroup(pvacioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGap(19, 19, 19)
+                .addGroup(pvacioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(txtcedula)
+                    .addComponent(txtnombres)
+                    .addComponent(txtapellidos)
                     .addGroup(pvacioLayout.createSequentialGroup()
-                        .addGap(105, 105, 105)
-                        .addComponent(botonregistrar, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(pvacioLayout.createSequentialGroup()
-                        .addGap(19, 19, 19)
-                        .addGroup(pvacioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(txtcedula)
-                            .addComponent(txtnombres)
-                            .addComponent(txtapellidos)
-                            .addGroup(pvacioLayout.createSequentialGroup()
-                                .addGroup(pvacioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addComponent(txttelefono, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 194, Short.MAX_VALUE)
-                                    .addComponent(txtcorreo, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txtdatenaci, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addGap(18, 18, 18)
-                                .addGroup(pvacioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txtsexo)
-                                    .addComponent(txtcupo, javax.swing.GroupLayout.DEFAULT_SIZE, 178, Short.MAX_VALUE)
-                                    .addComponent(txtsueldo, javax.swing.GroupLayout.DEFAULT_SIZE, 178, Short.MAX_VALUE))))))
-                .addContainerGap(17, Short.MAX_VALUE))
+                        .addGroup(pvacioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(txttelefono, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 194, Short.MAX_VALUE)
+                            .addComponent(txtcorreo, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtdatenaci, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(18, 18, 18)
+                        .addGroup(pvacioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtsexo)
+                            .addComponent(txtcupo, javax.swing.GroupLayout.DEFAULT_SIZE, 178, Short.MAX_VALUE)
+                            .addComponent(txtsueldo, javax.swing.GroupLayout.DEFAULT_SIZE, 178, Short.MAX_VALUE))))
+                .addContainerGap(77, Short.MAX_VALUE))
         );
         pvacioLayout.setVerticalGroup(
             pvacioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -723,12 +557,10 @@ public class VistaPersona extends javax.swing.JFrame {
                 .addGroup(pvacioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(txtsueldo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtdatenaci, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 106, Short.MAX_VALUE)
-                .addComponent(botonregistrar, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jPanel3.setBackground(new java.awt.Color(51, 0, 255));
+        jPanel3.setBackground(new java.awt.Color(0, 153, 255));
 
         jLabel2.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
@@ -739,7 +571,7 @@ public class VistaPersona extends javax.swing.JFrame {
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addContainerGap(104, Short.MAX_VALUE)
+                .addContainerGap(164, Short.MAX_VALUE)
                 .addComponent(jLabel2)
                 .addGap(90, 90, 90))
         );
@@ -775,70 +607,14 @@ public class VistaPersona extends javax.swing.JFrame {
                     .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1)
-                    .addComponent(pvacio, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(pvacio, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void txtBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtBuscarActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtBuscarActionPerformed
-
-    private void btEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btEliminarActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btEliminarActionPerformed
-
-    private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnEditarActionPerformed
-
-    private void btnImprimirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnImprimirActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnImprimirActionPerformed
-
-    private void MOSTRARTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MOSTRARTActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_MOSTRARTActionPerformed
-
-    private void botonregistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonregistrarActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_botonregistrarActionPerformed
-
-    private void txtnombresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtnombresActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtnombresActionPerformed
-
-    private void txtapellidosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtapellidosActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtapellidosActionPerformed
-
-    private void txtcedulaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtcedulaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtcedulaActionPerformed
-
-    private void txttelefonoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txttelefonoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txttelefonoActionPerformed
-
-    private void txtsexoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtsexoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtsexoActionPerformed
-
-    private void txtcupoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtcupoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtcupoActionPerformed
-
-    private void txtcorreoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtcorreoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtcorreoActionPerformed
-
-    private void txtsueldoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtsueldoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtsueldoActionPerformed
 
     private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
         // TODO add your handling code here:
@@ -880,17 +656,12 @@ public class VistaPersona extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_botonConfirmarActionPerformed
 
-    private void btnConsultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultarActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnConsultarActionPerformed
-
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JDialog FormularioP;
     private javax.swing.JButton MOSTRART;
     private javax.swing.JButton botonConfirmar;
-    private javax.swing.JButton botonregistrar;
     private javax.swing.JButton btEliminar;
     private javax.swing.JButton btnConsultar;
     private javax.swing.JButton btnCrear;
