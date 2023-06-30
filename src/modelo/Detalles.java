@@ -14,6 +14,7 @@ public class Detalles {
     private int iddetalle;
     private int codigoproducto;
     private  int encabezado_id;
+    
     private Double subtotalpro;
     private int cantidad;
 
@@ -24,6 +25,7 @@ public class Detalles {
         this.iddetalle = iddetalle;
         this.codigoproducto = codigoproducto;
         this.encabezado_id = encabezado_id;
+        
         this.subtotalpro = subtotalpro;
         this.cantidad = cantidad;
     }

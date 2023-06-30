@@ -11,6 +11,10 @@ import javax.swing.JTextField;
 
 public class VistaPersona extends javax.swing.JInternalFrame {
 
+    public JButton getBtnImprimirP() {
+        return btnImprimirP;
+    }
+
     public VistaPersona() {
         initComponents();
     }
@@ -150,6 +154,7 @@ public class VistaPersona extends javax.swing.JInternalFrame {
     
     
     
+    
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -177,6 +182,7 @@ public class VistaPersona extends javax.swing.JInternalFrame {
         btnEditar = new javax.swing.JButton();
         btnImprimir = new javax.swing.JButton();
         MOSTRART = new javax.swing.JButton();
+        btnImprimirP = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
         lblPersonas = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -389,8 +395,20 @@ public class VistaPersona extends javax.swing.JInternalFrame {
         btnEditar.setText("EDITAR");
 
         btnImprimir.setText("IMPRIMIR");
+        btnImprimir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnImprimirActionPerformed(evt);
+            }
+        });
 
         MOSTRART.setText("RECARGAR TABLA");
+
+        btnImprimirP.setText("IMPRIMIR 2");
+        btnImprimirP.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnImprimirPActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -404,7 +422,8 @@ public class VistaPersona extends javax.swing.JInternalFrame {
                         .addGap(18, 18, 18)
                         .addComponent(txtBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 359, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(34, 34, 34)
-                        .addComponent(btnConsultar))
+                        .addComponent(btnConsultar)
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(btnCrear)
@@ -414,9 +433,11 @@ public class VistaPersona extends javax.swing.JInternalFrame {
                         .addComponent(btnEditar)
                         .addGap(18, 18, 18)
                         .addComponent(btnImprimir)
-                        .addGap(18, 18, 18)
-                        .addComponent(MOSTRART)))
-                .addContainerGap(51, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnImprimirP)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 23, Short.MAX_VALUE)
+                        .addComponent(MOSTRART, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -432,8 +453,9 @@ public class VistaPersona extends javax.swing.JInternalFrame {
                     .addComponent(btEliminar)
                     .addComponent(btnEditar)
                     .addComponent(btnImprimir)
-                    .addComponent(MOSTRART))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(MOSTRART)
+                    .addComponent(btnImprimirP))
+                .addContainerGap(16, Short.MAX_VALUE))
         );
 
         txtBuscar.getAccessibleContext().setAccessibleName("");
@@ -534,7 +556,7 @@ public class VistaPersona extends javax.swing.JInternalFrame {
                             .addComponent(txtsexo)
                             .addComponent(txtcupo, javax.swing.GroupLayout.DEFAULT_SIZE, 178, Short.MAX_VALUE)
                             .addComponent(txtsueldo, javax.swing.GroupLayout.DEFAULT_SIZE, 178, Short.MAX_VALUE))))
-                .addContainerGap(77, Short.MAX_VALUE))
+                .addContainerGap(67, Short.MAX_VALUE))
         );
         pvacioLayout.setVerticalGroup(
             pvacioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -571,7 +593,7 @@ public class VistaPersona extends javax.swing.JInternalFrame {
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addContainerGap(164, Short.MAX_VALUE)
+                .addContainerGap(154, Short.MAX_VALUE)
                 .addComponent(jLabel2)
                 .addGap(90, 90, 90))
         );
@@ -608,7 +630,7 @@ public class VistaPersona extends javax.swing.JInternalFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(pvacio, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jScrollPane1))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 417, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
@@ -656,6 +678,14 @@ public class VistaPersona extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_botonConfirmarActionPerformed
 
+    private void btnImprimirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnImprimirActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnImprimirActionPerformed
+
+    private void btnImprimirPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnImprimirPActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnImprimirPActionPerformed
+
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -667,6 +697,7 @@ public class VistaPersona extends javax.swing.JInternalFrame {
     private javax.swing.JButton btnCrear;
     private javax.swing.JButton btnEditar;
     private javax.swing.JButton btnImprimir;
+    private javax.swing.JButton btnImprimirP;
     private javax.swing.JButton btnSalir;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

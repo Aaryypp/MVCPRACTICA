@@ -5,7 +5,7 @@ import java.sql.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
-import com.mysql.jdbc.PreparedStatement;
+//import com.mysql.jdbc.PreparedStatement;
  
 public class ConexionPG {
 
@@ -19,7 +19,8 @@ public class ConexionPG {
 
     public ConexionPG(Connection con) {
         try {
-            Class.forName("com.mysql.jdbc.Driver");
+            Class.forName("com.mysql.cj.jdbc.Driver");
+//            com.mysql.cj.jdbc.Driver
 
         } catch (ClassNotFoundException e) {
        
@@ -34,14 +35,17 @@ public class ConexionPG {
         }
         
     }
-    public static Connection conectar() {
+    public  Connection conectar() {
+        
         try {
-            Class.forName("com.mysql.jdbc.Driver");
-            con = (Connection) DriverManager.getConnection(url, usuario, clave);         
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            con = (Connection) DriverManager.getConnection(url, usuario, clave);
         } catch (Exception e) {
             Toolkit.getDefaultToolkit().beep();
             JOptionPane.showMessageDialog(null, "¡No se pudo conectar a la base de datos!", "Error de conexión", JOptionPane.ERROR_MESSAGE);
         }
+    
+
         return con;
     }
 

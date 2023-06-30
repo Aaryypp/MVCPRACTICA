@@ -11,13 +11,24 @@ import java.awt.event.MouseEvent;
 import java.sql.Connection;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
+import static javax.swing.WindowConstants.DISPOSE_ON_CLOSE;
 import javax.swing.table.DefaultTableModel;
+import modelo.ConexionPG;
 import modelo.ModeloPersona;
 import modelo.ModeloProducto;
 import modelo.Persona;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperPrintManager;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.engine.util.JRLoader;
+import net.sf.jasperreports.view.JasperViewer;
 import vista.VistaPersona;
 
 
@@ -28,6 +39,7 @@ public class ControladorPersonas {
     private Persona metodos;
     private ModeloProducto listarp;
     Connection con;
+//    private ConexionPG conmsql; 
     String[] datospersona = {"Cedula", "Nombre", "Apellido", "Fecha nacimiento", "Telefono", " Sexo", "Sueldo", "Cupo","Correo"};
     List<Persona> personas = new ArrayList<Persona>();
     DefaultTableModel tabla = null; 
@@ -54,6 +66,8 @@ public class ControladorPersonas {
 //        vista.getBotonregistrar().addActionListener(c->ingresar() );
         vista.getBtnCrear().addActionListener(C -> abrirform(modform = "CREAR"));
         vista.getBtnEditar().addActionListener(C -> abrirform(modform = "EDITAR"));
+        vista.getBtnImprimir().addActionListener(l->printReport());
+        vista.getBtnImprimirP().addActionListener(l->printparametros());
         vista.getBotonConfirmar().addActionListener(c -> {
             ingresar();
             if (modform == "CREAR") {
@@ -300,8 +314,39 @@ public class ControladorPersonas {
          
 
     }
-        
-        
-     
-
+    public void printReport() {
+     try {
+            ConexionPG conmsql=new ConexionPG();
+            Map<String, Object> map = new HashMap<>();
+            int minimo = Integer.parseInt(JOptionPane.showInputDialog(null, "Ingrese el MINIMO DEL CUPO", null));
+            int maximo = Integer.parseInt(JOptionPane.showInputDialog(null, "Ingrese el MAXIMO DEL CUPO", null));
+            map.put("MAX",minimo );
+            map.put("MIN",maximo);
+            JasperReport jr = (JasperReport) JRLoader.loadObject(getClass().getResource("/Reportes/PRUEBAJ.jasper"));
+            JasperPrint print = JasperFillManager.fillReport(jr, map, conmsql.conectar());
+            JasperViewer pv = new JasperViewer(print, false);
+            pv.setVisible(true);
+            pv.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+        } catch (JRException e) {
+            e.printStackTrace();
+        }
+} 
+   public void printparametros() {
+        try {
+            ConexionPG conmsql=new ConexionPG();
+            Map<String, Object> map = new HashMap<>();
+            String titulo = (JOptionPane.showInputDialog(null, "Ingrese el titulo del reporte:", null));
+            String cedula = (JOptionPane.showInputDialog(null, "Ingrese la cedula que busca:", null));
+            map.put("TITULO",titulo );
+            map.put("cedula",cedula);
+            JasperReport jr = (JasperReport) JRLoader.loadObject(getClass().getResource("/Reportes/reppersonar.jasper"));
+            JasperPrint print = JasperFillManager.fillReport(jr, map, conmsql.conectar());
+            JasperViewer pv = new JasperViewer(print, false);
+            pv.setVisible(true);
+            pv.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+        } catch (JRException e) {
+            e.printStackTrace();
+        }
+    } 
+    
 }

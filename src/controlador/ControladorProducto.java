@@ -4,7 +4,7 @@
  */
 package controlador;
 
-import com.mysql.jdbc.Connection;
+//import com.mysql.jdbc.Connection;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
@@ -29,7 +29,7 @@ public class ControladorProducto {
     private ModeloProducto modelo;
     private VistaProducto vista;
     private Producto metodos;
-    Connection con;
+//    Connection con;
     String[] datosproductod = {"IDProducto", "Nombre", "Precio", "Categoria", "Stock", "Descripciom"};
     List<Producto> productos = new ArrayList<Producto>();
     DefaultTableModel tabla = null; 

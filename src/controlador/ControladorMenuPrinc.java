@@ -24,8 +24,7 @@ public class ControladorMenuPrinc {
     Vistafactura vistafac;
     public ControladorMenuPrinc() {
     }
-    
-    
+
     public ControladorMenuPrinc (VistaMenuPrincipal vistaPrincipal){
         this.vistaPrincipal=vistaPrincipal;
         System.out.println(vistaPrincipal.isVisible());

@@ -4,7 +4,7 @@
  */
 package controlador;
 
-import com.mysql.jdbc.Connection;
+//import com.mysql.jdbc.Connection;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
@@ -14,6 +14,7 @@ import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
@@ -64,7 +65,7 @@ public class ControladorFactura {
     
 
    
-    Connection con;
+//    Connection con;
     String[] datosproductod = {"IDProducto", "Nombre", "Precio", "Stock", "Categoria", "Descripcion"};
     String[] datosdetalle = {"IDProducto", "Nombre", "Precio", "Cantidad", "Total"};
     String[] datosencabe={"NUMERO FACTURA", "Cedula", "Feccha","Total"};
@@ -133,23 +134,23 @@ public class ControladorFactura {
             }
 
         }
-        
-    
-   }
-      public void seleccionaritem(JTable t){
-          boolean ingresa = true;
-          int filat = vista.getT_detalles().getRowCount();
-          String id_pro1 = t.getValueAt(t.getSelectedRow(), 0).toString();
-          for (int i = 0; i < filat; i++) {
-              String compara = vista.getT_detalles().getValueAt(i, 0).toString();
-              System.out.println("" + id_pro1 + "=" + compara + "");
-              if (compara.equals(id_pro1)) {
-                  ingresa = false;
-                  i = filat;
-              } else {
-                  ingresa = true;
 
-              }
+    }
+
+    public void seleccionaritem(JTable t) {
+        boolean ingresa = true;
+        int filat = vista.getT_detalles().getRowCount();
+        String id_pro1 = t.getValueAt(t.getSelectedRow(), 0).toString();
+        for (int i = 0; i < filat; i++) {
+            String compara = vista.getT_detalles().getValueAt(i, 0).toString();
+            System.out.println("" + id_pro1 + "=" + compara + "");
+            if (compara.equals(id_pro1)) {
+                ingresa = false;
+                i = filat;
+            } else {
+                ingresa = true;
+
+            }
 
         }
         System.out.println(ingresa);
@@ -168,7 +169,6 @@ public class ControladorFactura {
                     vista.getT_detalles().setModel(tabla3);
                     total = total + precio_pro * cantidad;
                     vista.getSumadetalles().setText(String.valueOf(total));
-                    
 
                 }
             } catch (Exception e) {
@@ -178,93 +178,97 @@ public class ControladorFactura {
         }
 
     }
-    public void crearfactura(){
-     ///crear encabezado
-        if (vista.getTxtcedcli().getText().isEmpty()) {
-         JOptionPane.showMessageDialog(null, "Cliente no se encuentra ingresado");    
-        }
-        if (vista.getT_detalles().getRowCount()==0) {
-         JOptionPane.showMessageDialog(null, "Ingrese productos");       
-        }
-        if (vista.getT_detalles().getRowCount()==0||vista.getTxtnombres().getText().isEmpty()){
 
-        }else{
-             try { 
-                 modeloenca.setIdpersona(vista.getTxtcedcli().getText());
-                 LocalDate localDate = LocalDate.now();
-                 Date dates = Date.from(localDate.atStartOfDay(ZoneId.systemDefault()).toInstant());
-                 Long d = dates.getTime();
-                 java.sql.Date nac = new java.sql.Date(d);
-                 System.out.println(nac);
-                 modeloenca.setFechafac(nac);
-                 modeloenca.setTotal(Double.parseDouble(vista.getSumadetalles().getText()));
-                 modeloenca.setEstado("ACTIVO");  
-                 if (modeloenca.crearFacturaenca()) {
-                  JOptionPane.showMessageDialog(null, "Factura creada exitosamente");
-                 }
- 
-                
+    public void crearfactura() {
+        ///crear encabezado
+        if (vista.getTxtcedcli().getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Cliente no se encuentra ingresado");
+        }
+        if (vista.getT_detalles().getRowCount() == 0) {
+            JOptionPane.showMessageDialog(null, "Ingrese productos");
+        }
+        if (vista.getT_detalles().getRowCount() == 0 || vista.getTxtnombres().getText().isEmpty()) {
+
+        } else {
+            try {
+                modeloenca.setIdpersona(vista.getTxtcedcli().getText());
+                LocalDate localDate = LocalDate.now();
+                Date dates = Date.from(localDate.atStartOfDay(ZoneId.systemDefault()).toInstant());
+                Long d = dates.getTime();
+                java.sql.Date nac = new java.sql.Date(d);
+                System.out.println(nac);
+                modeloenca.setFechafac(nac);
+                modeloenca.setTotal(Double.parseDouble(vista.getSumadetalles().getText()));
+                modeloenca.setEstado("ACTIVO");
+                if (modeloenca.crearFacturaenca()) {
+                    JOptionPane.showMessageDialog(null, "Factura creada exitosamente");
+                }
+
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(null, "INGRESE LOS DATOS CORRECTOS");
             }
-            
+
         }
         ///////creardetalles
         int fila = vista.getT_detalles().getRowCount();
-        for (int i = 0; i < fila; i++) { 
-        modelodeta.setEncabezado_id(Integer.parseInt(vista.getNumfact().getText()));
-        modelodeta.setCodigoproducto(Integer.parseInt(vista.getT_detalles().getValueAt(i, 0).toString())); ///////CODIGO PRODUCTO
-        modelodeta.setSubtotalpro(Double.parseDouble(vista.getT_detalles().getValueAt(i, 4).toString()));//subtotal
-        modelodeta.setCantidad(Integer.parseInt(vista.getT_detalles().getValueAt(i, 3).toString()));//subtotal  
-        modelodeta.crearFacturadetalles();
-        
-        vista.getBuscadorprod().setVisible(false);
-        
+        for (int i = 0; i < fila; i++) {
+            modelodeta.setEncabezado_id(Integer.parseInt(vista.getNumfact().getText()));
+            modelodeta.setCodigoproducto(Integer.parseInt(vista.getT_detalles().getValueAt(i, 0).toString())); ///////CODIGO PRODUCTO
+            modelodeta.setSubtotalpro(Double.parseDouble(vista.getT_detalles().getValueAt(i, 4).toString()));//subtotal
+            modelodeta.setCantidad(Integer.parseInt(vista.getT_detalles().getValueAt(i, 3).toString()));//subtotal  
+            modelodeta.crearFacturadetalles();
+
+            vista.getBuscadorprod().setVisible(false);
+
         }
-        
+
     }
-     private void numfactu(){
-      countenca=modeloenca.contadorencabe()+1;
-      vista.getNumfact().setText(String.valueOf(countenca));
-     }
+
+    private void numfactu() {
+        countenca = modeloenca.contadorencabe() + 1;
+        vista.getNumfact().setText(String.valueOf(countenca));
+    }
 
     public void fechahoy() {
         LocalDate fechahoy = LocalDate.now();
         vista.getLabelfechafac().setText(fechahoy.toString());
 
     }
-    public void salirproduct(){
-    vista.getBuscadorprod().setVisible(false);
-    
-}
-    public void salirdefactura(){
-    vista.setVisible(false);
-    
-}
-   public void salirdebuscarfactura(){
-    vista.getBuscadorFact().setVisible(false);
-    
-}
+
+    public void salirproduct() {
+        vista.getBuscadorprod().setVisible(false);
+
+    }
+
+    public void salirdefactura() {
+        vista.setVisible(false);
+
+    }
+
+    public void salirdebuscarfactura() {
+        vista.getBuscadorFact().setVisible(false);
+
+    }
+
     public void visualizarFacturas() {
         vista.getBuscadorFact().setLocation(vista.getLocation().x + 620, vista.getLocation().y + 100);
         vista.getBuscadorFact().setSize(600, 650);
         vista.getBuscadorFact().setVisible(true);
         visualizarencabezados();
-        
-        
+
     }
-      public void visualizarencabezados() {
+
+    public void visualizarencabezados() {
         tabla4 = new DefaultTableModel(null, datosencabe);
         listencab = modeloenca.listaEncabezados();
         listencab.stream().forEach(p -> tabla4.addRow(new Object[]{p.getCodigoenca(), p.getIdpersona(), p.getFechafac(),
-        p.getTotal()}));
+            p.getTotal()}));
         vista.getTable_enca().setModel(tabla4);
-        vista.getTable_enca().setRowHeight(25);    
+        vista.getTable_enca().setRowHeight(25);
     }
-      
-      
-      ////////////////////////////////////
-      public void MostrarDetalle(JTable t){
+
+    ////////////////////////////////////
+    public void MostrarDetalle(JTable t) {
         t.addMouseListener(new MouseAdapter() {
             @Override
             public void mousePressed(MouseEvent me) {
@@ -272,25 +276,26 @@ public class ControladorFactura {
                     cod = Integer.parseInt(vista.getTable_enca().getValueAt(vista.getTable_enca().getSelectedRow(), 0).toString());
                     tabla4 = new DefaultTableModel(null, datodet);
                     listadeta = modelodeta.listarDETALLES(cod);
-                    listadeta.stream().forEach(p -> tabla4.addRow(new Object[]{p.getIddetalle(),p.getCodigoproducto(),p.getEncabezado_id(),p.getSubtotalpro(),p.getCantidad()}));
+                    listadeta.stream().forEach(p -> tabla4.addRow(new Object[]{p.getIddetalle(), p.getCodigoproducto(), p.getEncabezado_id(), p.getSubtotalpro(), p.getCantidad()}));
                     vista.getTabel_detas().setModel(tabla4);
-                    vista.getTabel_detas().setRowHeight(25); 
-                  
+                    vista.getTabel_detas().setRowHeight(25);
+
                 }
             }
         });
     }
-      public void eliminarencabez(){
-         ////////////////////////////
-           if (JOptionPane.showConfirmDialog(null, 
+
+    public void eliminarencabez() {
+        ////////////////////////////
+        if (JOptionPane.showConfirmDialog(null,
                 "¿Está seguro de que desea eliminar el registro seleccionado?",
-                "Eliminar registro", JOptionPane.YES_NO_OPTION, 
+                "Eliminar registro", JOptionPane.YES_NO_OPTION,
                 JOptionPane.WARNING_MESSAGE) == JOptionPane.YES_OPTION) {
             System.out.println("si");
-               try {
-                   cod2 = Integer.parseInt(vista.getTable_enca().getValueAt(vista.getTable_enca().getSelectedRow(), 0).toString());
-                   if (cod2 == 0) {
-                       JOptionPane.showMessageDialog(null, "Selecciones un factura a eliminar");
+            try {
+                cod2 = Integer.parseInt(vista.getTable_enca().getValueAt(vista.getTable_enca().getSelectedRow(), 0).toString());
+                if (cod2 == 0) {
+                    JOptionPane.showMessageDialog(null, "Selecciones un factura a eliminar");
                 } else {
 
                     modeloenca.eliminarperso(cod);
@@ -308,57 +313,25 @@ public class ControladorFactura {
         }
 
     }
-       public void validar() {
-        
+
+    public void validar() {
+
         vista.getTxtcedcli().addKeyListener(new KeyAdapter() {
             @Override
             public void keyPressed(KeyEvent e) {
                 Validar.numero(vista.getTxtcedcli(), 10);
             }
         });
-//         vista.getTxtapellidosform().addKeyListener(new KeyAdapter() {
-//            @Override
-//            public void keyPressed(KeyEvent e) {
-//                Validar.letras_espacios(vista.getTxtapellidosform(), 30);
-//            }
-//        });
-//        vista.getTxtcedulaform().addKeyListener(new KeyAdapter() {
-//            @Override
-//            public void keyPressed(KeyEvent e) {
-//                Validar.numero(vista.getTxtcedulaform(), 10);
-//            }
-//        });
-//        vista.getTxtcupoform().addKeyListener(new KeyAdapter() {
-//            @Override
-//            public void keyPressed(KeyEvent e) {
-//                Validar.numero(vista.getTxtcupoform(), 3);
-//            }
-//        });
-//        vista.getTxtsueldoform().addKeyListener(new KeyAdapter() {
-//            @Override
-//            public void keyPressed(KeyEvent e) {
-//                Validar.dinero(vista.getTxtsueldoform(), 7);
-//            }
-//        });
-//        
-//        vista.getTxttelefonoform().addKeyListener(new KeyAdapter() {
-//            @Override
-//            public void keyPressed(KeyEvent e) {
-//                Validar.numero(vista.getTxttelefonoform(), 10);
-//            }
-//        });
-//        
-//        vista.getTxtsexoform().addKeyListener(new KeyAdapter() {
-//            @Override
-//            public void keyPressed(KeyEvent e) {
-//                Validar.letras(vista.getTxtsexoform(), 9);
-//            }
-//        });
 
     }
-      
-      
-      
- 
-    
+//   public void printReport() {
+//    try {
+//        String reportPath = "path/to/report.jasper";
+//        JasperPrint print = JasperFillManager.fillReport(reportPath, new HashMap<>(), getDatabaseConnection());
+//        JasperPrintManager.printReport(print, true);
+//    } catch (JRException e) {
+//        e.printStackTrace();
+//    }
+//} 
+
 }
