@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.3.0.final using JasperReports Library version 6.3.0  -->
+<!-- 2023-07-14T21:19:24 -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="subrep" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="d0d076da-2743-49c0-87a1-d9fc9114a3e1">
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="NUEVO.xml"/>
+	<subDataset name="Dataset3" uuid="5b3af224-8fab-432b-b193-9dfad9960953">
+		<property name="com.jaspersoft.studio.data.defaultdataadapter" value="NUEVO.xml"/>
+		<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+		<queryString>
+			<![CDATA[SELECT sexo, COUNT(sexo) AS cantidad, CAST(COUNT(sexo)*100.0/(SELECT COUNT(*) FROM persona) AS DECIMAL (10 , 2)) AS porcentaje
+FROM persona
+WHERE sexo IN ('M','F')
+GROUP BY sexo]]>
+		</queryString>
+		<field name="sexo" class="java.lang.String"/>
+		<field name="cantidad" class="java.lang.Long"/>
+		<field name="porcentaje" class="java.math.BigDecimal"/>
+	</subDataset>
+	<queryString>
+		<![CDATA[SELECT  idpersona, nombres, apellidos, sueldo 
+From persona
+order by sueldo desc
+LIMIT 5]]>
+	</queryString>
+	<field name="idpersona" class="java.lang.String"/>
+	<field name="nombres" class="java.lang.String"/>
+	<field name="apellidos" class="java.lang.String"/>
+	<field name="sueldo" class="java.math.BigDecimal"/>
+	<group name="idpersona">
+		<groupExpression><![CDATA[$F{idpersona}]]></groupExpression>
+	</group>
+	<group name="nombres">
+		<groupExpression><![CDATA[$F{nombres}]]></groupExpression>
+	</group>
+	<group name="apellidos">
+		<groupExpression><![CDATA[$F{apellidos}]]></groupExpression>
+	</group>
+	<group name="sueldo">
+		<groupExpression><![CDATA[$F{sueldo}]]></groupExpression>
+	</group>
+	<title>
+		<band height="165" splitType="Stretch">
+			<bar3DChart>
+				<chart evaluationTime="Report">
+					<reportElement x="40" y="-5" width="430" height="170" uuid="b82de509-86a9-4703-a657-f65847d35334"/>
+					<chartTitle/>
+					<chartSubtitle/>
+					<chartLegend/>
+				</chart>
+				<categoryDataset>
+					<categorySeries>
+						<seriesExpression><![CDATA["Suedos"]]></seriesExpression>
+						<categoryExpression><![CDATA[$F{nombres}]]></categoryExpression>
+						<valueExpression><![CDATA[$F{sueldo}]]></valueExpression>
+						<labelExpression><![CDATA[$F{nombres}]]></labelExpression>
+					</categorySeries>
+				</categoryDataset>
+				<bar3DPlot>
+					<plot orientation="Horizontal" backgroundAlpha="1.0" labelRotation="0.0"/>
+					<itemLabel/>
+					<categoryAxisFormat labelRotation="0.0">
+						<axisFormat/>
+					</categoryAxisFormat>
+					<valueAxisFormat>
+						<axisFormat>
+							<tickLabelFont>
+								<font size="10"/>
+							</tickLabelFont>
+						</axisFormat>
+					</valueAxisFormat>
+				</bar3DPlot>
+			</bar3DChart>
+		</band>
+	</title>
+</jasperReport>
